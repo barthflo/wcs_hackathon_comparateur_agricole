@@ -14,7 +14,7 @@ export default function InteractiveMap() {
     const positionQG = [48.4470213, 1.5375294];
 
     return(
-        <MapContainer className="map" center={positionQG} zoom={13} scrollWheelZoom={false}>
+        <MapContainer className="map" center={positionQG} zoom={13} scrollWheelZoom={true} wheelPxPerZoomLevel={400}>
             <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
