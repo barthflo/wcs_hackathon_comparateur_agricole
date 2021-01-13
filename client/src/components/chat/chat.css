@@ -1,0 +1,18 @@
+.chat-container{
+    right:0;
+    height:100vh;
+    background: var(--light-grey);
+    z-index:1000;
+    width:85%;
+    border-left: var(--primary) 15px solid;
+}
+
+.chat-icon{
+    top:0;
+    right:0;
+    z-index:1000;
+}
+
+.chat-icon svg path{
+    color: var(--primary);
+}

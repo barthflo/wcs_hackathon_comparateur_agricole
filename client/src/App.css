@@ -11,16 +11,16 @@
 
 :root {
     /* --- Primary Colors --- */
-    --info: #337ab7;
-    --warning: #f37f2b;
-    --premium: #e9b537;
-    --danger: #e4454d;
-    --primary: #5a9449;
+    --info: #337ab7 !important;
+    --warning: #f37f2b !important;
+    --premium: #e9b537 !important;
+    --danger: #e4454d !important;
+    --primary: #5a9449 !important;
     /* --- Shades of grey --- */
-    --black: #2a2a2a;
-    --dark-grey: #565656;
-    --medium-grey: #d6d6d6;
-    --light-grey: #e8e8e8;
+    --black: #2a2a2a !important;
+    --dark-grey: #565656 !important;
+    --medium-grey: #d6d6d6 !important;
+    --light-grey: #e8e8e8 !important;
     /* --- Font Families --- */
     --default-font: 'Open Sans', 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --header-font: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
