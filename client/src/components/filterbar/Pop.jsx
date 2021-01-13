@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Axios from 'axios';
+import {useState} from 'react';
 
 const FORM = styled.form`
     display: flex;
@@ -10,24 +12,35 @@ const FORM = styled.form`
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
     right: 0;
-    width: 30%;
+    padding: 24px;
     transition: transform 0.3s ease-in-out;
-        
+    height: 100vh;
+    width: fit-content;    
 `;
 
 const Pop = ({ open }) => {
+
+    const [city, setCity] = useState("");
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        Axios.get(`http://localhost:8000/api/cities/${city}`).then((response)=>{console.log(response)})
+    }
+
     return (
-        <FORM open={open}>
+        <FORM open={open} onSubmit={handleSubmit}>
             <h2>Filtres</h2>
             <label>Type de produit:
                 <select>
+                    <option>Choisir produit</option>
                     <option>Blé</option>
                     <option>Avoine</option>
                 </select>
             </label>
-            <label>Ville: <input type="text"></input></label>
+            <label>Ville: <input type="text" value={city} onChange={e => setCity(e.target.value)}></input></label>
             <label>Surface agricole: 
                 <select>
+                    <option value="undefine">Choisir</option>
                     <option> 50 </option>
                     <option> 50 100 </option>
                     <option> 100 </option>

@@ -1,9 +1,10 @@
 .filterBar{
     display: flex;
     justify-content: flex-end;
-    margin: 32px;
+    position: fixed;
     z-index: 1;
-    position: relative;
+    right: 0;
+    margin: 32px;
 }
 
 .filterBar h2{
