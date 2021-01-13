@@ -2,6 +2,8 @@
     display: flex;
     justify-content: flex-end;
     margin: 32px;
+    z-index: 1;
+    position: relative;
 }
 
 .filterBar h2{
