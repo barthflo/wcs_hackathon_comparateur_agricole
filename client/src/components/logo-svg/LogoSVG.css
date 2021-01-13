@@ -1,0 +1,17 @@
+.logo-svg{
+    position: fixed;
+    z-index: 999;
+    width: 400px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.st0 {
+    fill: #5a9449;
+}
+
+@media screen and (max-width: 767px) {
+    .logo-svg{
+        width: 320px;
+    }
+}
