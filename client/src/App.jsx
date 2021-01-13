@@ -1,11 +1,10 @@
-import './App.css';
-import AdminList from './components/admin/AdminList';
-
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Hackathon Comparateur Agricole!</h1>
+      <h1 className="text-center">Welcome to Hackathon Comparateur Agricole!</h1>
     </div>
   );
 }
