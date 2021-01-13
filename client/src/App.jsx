@@ -6,7 +6,6 @@ import Filter from './components/filterbar/Filter.jsx';
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Hackathon Comparateur Agricole!</h1>
       <Filter />
     </div>
   );
