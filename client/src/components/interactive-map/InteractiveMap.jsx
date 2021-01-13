@@ -12,7 +12,7 @@ export const qgIcon = new L.Icon({
 
 export default function InteractiveMap() {
     const positionQG = [48.4470213, 1.5375294];
-
+    
     return(
         <MapContainer className="map" center={positionQG} zoom={13} scrollWheelZoom={false}>
             <TileLayer
