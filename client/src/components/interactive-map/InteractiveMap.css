@@ -1,0 +1,22 @@
+.map {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.popup-locaux {
+    font-family: var(--header-font);
+    font-weight: var(--bold);
+    text-align: center;
+    color: #5a9449;
+}
+
+.leaflet-control-zoom {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 16px;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 16px;
+}
