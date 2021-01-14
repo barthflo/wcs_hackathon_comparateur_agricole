@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Axios from 'axios';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const FORM = styled.form`
     display: flex;
@@ -14,45 +14,57 @@ const FORM = styled.form`
     right: 0;
     padding: 24px;
     transition: transform 0.3s ease-in-out;
-    height: 100vh;
-    width: fit-content;    
+    height: 100vh; 
+    width: 25%;
+    border-left: 15px solid green; 
+
+    @media screen and (max-width: 768px){
+        width: 60%;
+    }
 `;
 
 const Pop = ({ open }) => {
 
-    const [city, setCity] = useState("");
+    const [product, setProduct] = useState("");
+    const [farmSize, setFarmSize] = useState([]);
+    const [type, setType] = useState([]);
+    const [checkClient, setCheckClient] = useState(false);
+    const [checkBuyer, setCheckBuyer] = useState(false);
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        Axios.get(`http://localhost:8000/api/cities/:id`).then((response)=>{console.log(response)})
-    }
+    useEffect(()=>{
+        Axios.get(``).then(res => setProduct(res.data))
+    }, []);
 
+    console.log({checkClient}, {checkBuyer});
     return (
-        <FORM open={open} onSubmit={handleSubmit}>
+        
+        <FORM open={open}>
             <h2>Filtres</h2>
+            
+            <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckClient(!checkClient)}>Agriculteur Client<input type="checkbox" value="client"></input></label>
+            <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckBuyer(!checkBuyer)}>Acheteur<input type="checkbox" value="buyers"></input></label>
             <label>Type de produit:
-                <select>
-                    <option>Choisir produit</option>
-                    <option>Blé</option>
-                    <option>Avoine</option>
+                <select value={product} onChange={e => setProduct(e.target.value)}> 
+                    <option value="ble">Blé</option>
+                    <option value="avoine">Avoine</option>
+                    <option value="triticale">Triticale</option>
+                    <option value="orge">Orge</option>
+                    <option value="mais">Maïs</option>
+                    <option value="pois">Pois</option>
+                    <option value="colza">Colza</option>
+                    <option value="tournesol">Tournesol</option>
+                    <option value="feverol">Feverol</option>
                 </select>
             </label>
-            <Autocomplete
-  id="combo-box-demo"
-  options={top100Films}
-  getOptionLabel={(option) => option.title}
-  style={{ width: 300 }}
-  renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-/>
-            <label>Surface agricole: 
-                <select>
-                    <option value="undefine">Choisir</option>
-                    <option> 50 </option>
-                    <option> 50 100 </option>
-                    <option> 100 </option>
-                    </select></label>
-            <input type="submit" value="search"></input>
+            <label>Surface d'exploitation (hectares):
+                <select value={farmSize} onChange={e => setFarmSize(e.target.value)}>
+                    <option value="little"> - 100 </option>
+                    <option value="medium"> 100 - 200 </option>
+                    <option value="big"> 200 + </option>
+                </select>
+            </label>       
         </FORM>
+        
     )
 }
 
