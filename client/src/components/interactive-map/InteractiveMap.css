@@ -6,15 +6,36 @@
 
 .popup-locaux {
     font-family: var(--header-font);
-    font-weight: var(--bold);
+    font-size: 20px;
+    font-weight: var(--semi-bold);
+    color: var(--primary);
     text-align: center;
-    color: #5a9449;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.leaflet-fade-anim .leaflet-tile, .leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: auto !important;
+}
+
+.leaflet-popup-content-wrapper {
+    width: 320px;
+}
+
+.popup-buyer .leaflet-popup-content-wrapper {
+    width: 240px;
 }
 
 .leaflet-control-zoom {
     position: fixed;
     bottom: 0;
     margin-bottom: 16px;
+}
+
+.leaflet-popup-close-button {
+    color: #5a9449 !important;
+    margin: 8px;
 }
 
 .leaflet-left .leaflet-control {
@@ -35,8 +56,8 @@
     text-align: center;
 }
 
-.circle-localisation{
-    cursor:grab;
+.circle-localisation {
+    cursor: grab;
 }
 
 @media screen and (max-width: 767px) {

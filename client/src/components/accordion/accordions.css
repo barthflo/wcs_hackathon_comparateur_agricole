@@ -1,0 +1,18 @@
+.text-info-accordions li {
+    color:var(--black);
+    font-family: var(--default-font);
+    font-weight: var(--semi-bold);
+    list-style: none;
+    font-size:14px;
+}
+.title-accordions{
+    color:var(--warning);
+    font-family: var(--header-font);
+    font-weight: var(--bold);
+    font-size:18px;
+
+}
+
+.color-ET{
+    color:var(--primary)
+}

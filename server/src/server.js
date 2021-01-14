@@ -17,12 +17,8 @@ const { addUser, RemoveUser, getUser, getUsersInRoom, removeUser } = require('./
 // ***
 
 io.on("connection", (socket) => {
-  console.log("we have a new connection!");
-
   socket.on('join', ({name, room}, callback) => {
-    console.log(name, room);
     const {error, user} = addUser({id: socket.id, name: name, room: room});
-    console.log(user);
     if(error){
       return callback(error);
     }
@@ -34,15 +30,12 @@ io.on("connection", (socket) => {
   });
 
   socket.on('sendMessage', (message, callback) => {
-    console.log(socket.id);
     const user = getUser(socket.id);
-    console.log("user :" + user);
     io.to(user.room).emit('message', {user : user.name, text : message});
     callback();
   });
 
   socket.on('unconnect', () => {
-      console.log("user has left");
       removeUser(socket.id);
   })
 })
