@@ -58,4 +58,13 @@ CREATE TABLE `transactions` (
 );
 
 
+ALTER TABLE `buyers` ADD FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
+​
+ALTER TABLE `farmers` ADD FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
+​
+ALTER TABLE `transactions` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+​
+ALTER TABLE `transactions` ADD FOREIGN KEY (`farmer_id`) REFERENCES `farmers` (`id`);
+​
+ALTER TABLE `transactions` ADD FOREIGN KEY (`buyer_id`) REFERENCES `buyers` (`id`);
 
