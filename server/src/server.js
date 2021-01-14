@@ -1,6 +1,9 @@
 require('dotenv').config();
 const PORT = process.env.PORT;
 const app = require('./app');
+const importCsv = require('./importCsv');
+
+importCsv();
 
 app.listen(PORT, (err) => {
   if (err) {
@@ -9,3 +12,4 @@ app.listen(PORT, (err) => {
     console.log(`Server is running on port: ${PORT}`);
   }
 });
+

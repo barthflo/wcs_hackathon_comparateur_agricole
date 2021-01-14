@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+/* --- Document Reset --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* --- Primary Colors --- */
+    --info: #337ab7 !important; 
+    --warning: #f37f2b !important;
+    --premium: #e9b537 !important;
+    --danger: #e4454d !important;
+    --primary: #5a9449 !important; 
+    /* --- Shades of grey --- */
+    --black: #2a2a2a !important;
+    --dark-grey: #565656 !important;
+    --medium-grey: #d6d6d6 !important;
+    --light-grey: #e8e8e8 !important;
+    /* --- Font Families --- */
+    --default-font: 'Open Sans', 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --header-font: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* --- Font Weights --- */
+    --bold: 700;
+    --semi-bold: 600;
+    --regular: 400;
+}

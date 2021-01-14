@@ -1,0 +1,67 @@
+.map {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.popup-locaux {
+    font-family: var(--header-font);
+    font-size: 20px;
+    font-weight: var(--semi-bold);
+    color: var(--primary);
+    text-align: center;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.leaflet-fade-anim .leaflet-tile, .leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: auto !important;
+}
+
+.leaflet-popup-content-wrapper {
+    width: 320px;
+}
+
+.popup-buyer .leaflet-popup-content-wrapper {
+    width: 240px;
+}
+
+.leaflet-control-zoom {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 16px;
+}
+
+.leaflet-popup-close-button {
+    color: #5a9449 !important;
+    margin: 8px;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 16px;
+}
+
+.wait-localisation, .no-localisation {
+    height: 100vh;
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5a9449;
+    font-family: var(--header-font);
+    font-weight: var(--semi-bold);
+    font-size: 24px;
+    text-align: center;
+}
+
+.circle-localisation {
+    cursor: grab;
+}
+
+@media screen and (max-width: 767px) {
+    .wait-localisation, .no-localisation {
+        font-size: 16px;
+    }
+}
