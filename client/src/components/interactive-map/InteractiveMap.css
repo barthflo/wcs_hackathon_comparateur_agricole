@@ -15,6 +15,10 @@
     margin-bottom: 16px;
 }
 
+.leaflet-fade-anim .leaflet-tile, .leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: auto !important;
+}
+
 .leaflet-popup-content-wrapper {
     width: 320px;
 }
@@ -52,8 +56,8 @@
     text-align: center;
 }
 
-.circle-localisation{
-    cursor:grab;
+.circle-localisation {
+    cursor: grab;
 }
 
 @media screen and (max-width: 767px) {
