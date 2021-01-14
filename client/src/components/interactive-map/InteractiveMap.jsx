@@ -17,24 +17,23 @@ import tractor from "../../assets/tractor_icon-min.png";
 import QGIcon from "../../assets/home_icon-min.png";
 import buyer from "../../assets/buyer_icon-min.png";
 
-
 export const qgIcon = new L.Icon({
   iconUrl: QGIcon,
-  iconAnchor: [27, 55],
+  iconAnchor: [16, 55],
   popupAnchor: [10, -44],
   iconSize: [50, 50],
 });
 
 export const tractorIcon = new L.Icon({
   iconUrl: tractor,
-  iconAnchor: [27, 55],
+  iconAnchor: [5, 42],
   popupAnchor: [10, -44],
   iconSize: [28, 28],
 });
 
 export const buyerIcon = new L.Icon({
   iconUrl: buyer,
-  iconAnchor: [27, 55],
+  iconAnchor: [5, 42],
   popupAnchor: [10, -44],
   iconSize: [28, 28],
 });
@@ -117,60 +116,106 @@ export default function InteractiveMap() {
   const localisationCircle = { color: "#5a9449" };
 
 
+  const [product, setProduct] = useState("");
+  const [farmSize, setFarmSize] = useState([]);
+  const [type, setType] = useState([]);
+  const [checkClient, setCheckClient] = useState(false);
+  const [checkBuyer, setCheckBuyer] = useState(false);
+
+  const [openFilter, setOpenFilter]= useState(false);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/data`).then(res => setProduct(res.data))
+  }, []);
+
   return lat && long ? (
-    <MapContainer
-      className="map"
-      center={[lat, long]}
-      zoom={13}
-      scrollWheelZoom={true}
-      wheelPxPerZoomLevel={400}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <div>
+      <div className={openFilter ? "openFilterDiv" : "filterDiv"} onClick={() => setOpenFilter(!openFilter)}>
+        <div className="burgerFilter">
+          <div className="lineBurger"></div>
+          <div className="lineBurger"></div>
+          <div className="lineBurger"></div>
+        </div>
+        <form className={openFilter ? "formFilter" : "closeFormFilter"}>
+          <h2>Filtres</h2>
 
-      <LayerGroup>
-        <Circle
-          center={[lat, long]}
-          pathOptions={localisationCircle}
-          radius={800}
-          className="circle-localisation"
+          <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckClient(!checkClient)}>Agriculteur Client<input type="checkbox" value="client"></input></label>
+          <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckBuyer(!checkBuyer)}>Acheteur<input type="checkbox" value="buyers"></input></label>
+          <label>Type de produit:
+                <select value={product} onChange={e => setProduct(e.target.value)}>
+              <option value="ble">Blé</option>
+              <option value="avoine">Avoine</option>
+              <option value="triticale">Triticale</option>
+              <option value="orge">Orge</option>
+              <option value="mais">Maïs</option>
+              <option value="pois">Pois</option>
+              <option value="colza">Colza</option>
+              <option value="tournesol">Tournesol</option>
+              <option value="feverol">Feverol</option>
+            </select>
+          </label>
+          <label>Surface d'exploitation (hectares):
+                <select value={farmSize} onChange={e => setFarmSize(e.target.value)}>
+              <option value="little"> - 100 </option>
+              <option value="medium"> 100 - 200 </option>
+              <option value="big"> 200 + </option>
+            </select>
+          </label>
+        </form>
+      </div>
+      <MapContainer
+        className="map"
+        center={[lat, long]}
+        zoom={13}
+        scrollWheelZoom={true}
+        wheelPxPerZoomLevel={400}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      </LayerGroup>
 
-      <Marker position={positionQG} icon={qgIcon}>
-        <Popup className="popup">
-          <p className="popup-locaux">Locaux de ComparateurAgricole</p>
-        </Popup>
-      </Marker>
+        <LayerGroup>
+          <Circle
+            center={[lat, long]}
+            pathOptions={localisationCircle}
+            radius={800}
+            className="circle-localisation"
+          />
+        </LayerGroup>
 
-      {isLoadingFarmerCity
-        ? farmercity.slice(0, 1000).map((res) => (
+        <Marker position={positionQG} icon={qgIcon}>
+          <Popup className="popup">
+            <p className="popup-locaux">Locaux de ComparateurAgricole</p>
+          </Popup>
+        </Marker>
+
+        {isLoadingFarmerCity
+          ? farmercity.slice(0, 1000).map((res) => (
             <Marker position={[res.lat, res.long]} icon={tractorIcon}>
               <Popup className="popup">
                 <p className="popup-locaux">Locaux de ComparateurAgricole</p>
               </Popup>
             </Marker>
           ))
-        : null}
+          : null}
 
-      {isLoadingBuyercity
-        ? buyercity.slice(0, 8).map((res) => (
+        {isLoadingBuyercity
+          ? buyercity.slice(0, 8).map((res) => (
             <Marker position={[res.lat, res.long]} icon={buyerIcon}>
               <Popup className="popup">
                 <p className="popup-locaux">Locaux de ComparateurAgricole</p>
               </Popup>
             </Marker>
           ))
-        : null}
-
-    </MapContainer>
+          : null}
+      </MapContainer>
+    </div>
   ) : avaibleGPS ? (
     <p className="wait-localisation">Veuillez activer la géolocalisation</p>
   ) : (
-    <p className="no-localisation">
-      Désolé... Votre navigateur ne dispose pas d'un système de géolocalisation
-    </p>
-  );
+        <p className="no-localisation">
+          Désolé... Votre navigateur ne dispose pas d'un système de géolocalisation
+        </p>
+      );
 }

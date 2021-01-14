@@ -32,10 +32,9 @@ const Pop = ({ open }) => {
     const [checkBuyer, setCheckBuyer] = useState(false);
 
     useEffect(()=>{
-        Axios.get(``).then(res => setProduct(res.data))
+        Axios.get(`http://localhost:8000/data`).then(res => setProduct(res.data))
     }, []);
 
-    console.log({checkClient}, {checkBuyer});
     return (
         
         <FORM open={open}>
