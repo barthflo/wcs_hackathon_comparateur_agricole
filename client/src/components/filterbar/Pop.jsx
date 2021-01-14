@@ -24,7 +24,7 @@ const Pop = ({ open }) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        Axios.get(`http://localhost:8000/api/cities/${city}`).then((response)=>{console.log(response)})
+        Axios.get(`http://localhost:8000/api/cities/:id`).then((response)=>{console.log(response)})
     }
 
     return (
@@ -37,7 +37,13 @@ const Pop = ({ open }) => {
                     <option>Avoine</option>
                 </select>
             </label>
-            <label>Ville: <input type="text" value={city} onChange={e => setCity(e.target.value)}></input></label>
+            <Autocomplete
+  id="combo-box-demo"
+  options={top100Films}
+  getOptionLabel={(option) => option.title}
+  style={{ width: 300 }}
+  renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+/>
             <label>Surface agricole: 
                 <select>
                     <option value="undefine">Choisir</option>
