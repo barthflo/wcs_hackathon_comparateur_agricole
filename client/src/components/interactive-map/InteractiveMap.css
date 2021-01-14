@@ -35,6 +35,10 @@
     text-align: center;
 }
 
+.circle-localisation{
+    cursor:grab;
+}
+
 @media screen and (max-width: 767px) {
     .wait-localisation, .no-localisation {
         font-size: 16px;
