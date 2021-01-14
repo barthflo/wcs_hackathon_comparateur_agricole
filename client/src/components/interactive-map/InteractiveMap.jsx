@@ -93,7 +93,6 @@ export default function InteractiveMap() {
     axios
       .get(`${FETCH}/buyerscity`)
       .then((res) => {
-        console.log(res.data);
         setBuyercity(res.data);
         setLoadingBuyercity(true);
       })
@@ -101,8 +100,6 @@ export default function InteractiveMap() {
         console.log(erreur);
       });
   }, []);
-
-  console.log(buyercity);
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
