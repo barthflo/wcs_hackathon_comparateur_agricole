@@ -3,6 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, LayerGroup, Circle } from 'reac
 import * as L from 'leaflet';
 import QGIcon from '../../assets/home_icon.png';
 import { useEffect, useState } from 'react';
+import { FETCH } from "../../Fetch";
+import axios from "axios";
+import "./pop_up_component/popup-component";
+import "./pop_up_component/pop.css";
 
 export const qgIcon = new L.Icon({
     iconUrl: QGIcon,
@@ -16,17 +20,41 @@ export default function InteractiveMap() {
     const [long, setLongitude] = useState();
     const [avaibleGPS, setAvaibleGPS] = useState(true);
 
+    const [getFarmer, setFarmer] = useState({});
+    const [farmerLoading, setFarmerLoading] = useState(false);
+    let name = {};
+
     useEffect(() => {
         if("geolocation" in navigator){
             navigator.geolocation.getCurrentPosition(function(position) {
                 setLatitude(position.coords.latitude);
                 setLongitude(position.coords.longitude);
-                console.log(position);
               });
         } else {
             setAvaibleGPS(false);
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        axios
+          .get(`${FETCH}/farmers`)
+          .then((res) => {
+            setFarmer(res.data);
+            setFarmerLoading(true);
+          })
+          .catch(function (erreur) {
+            console.log(erreur);
+          });
+      }, []);
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+    
+      if (farmerLoading) {
+        let allname = getFarmer.map((res) => res.first_name);
+        name = allname[getRandomInt(1001)];
+      }
 
     const positionQG = [48.4470213, 1.5375294];
     const localisationCircle = { color: '#5a9449' };
