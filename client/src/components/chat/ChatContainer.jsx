@@ -1,14 +1,39 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import ChatIcon from './ChatIcon'
 import './chat.css'
+import JoinChat from './JoinChat';
+import ChatRoom from './ChatRoom';
 
 const ChatContainer = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [user, setUser] = useState('');
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('username')));
+    }, [user])
+
+    const handleUpdate = () => {
+        if(localStorage.getItem('username') === null){
+            setUser('')
+        } else{
+            setUser(JSON.parse(localStorage.getItem('username')));
+        }
+    }
+    const openChat = () => {
+        setIsOpen(!isOpen);
+    }
+    
     return (
         <Fragment>
-            <aside className = "chat-container d-flex position-absolute justify-content-end p-4">
-                <p>Chat Content</p>
+            <aside className = {"chat-container position-absolute d-flex flex-column justify-content-center align-item-center p-2" + (isOpen ? " open-chat" : " close-chat")}>
+                {!user || user.length === 0 ?
+                <JoinChat className={(!isOpen) ? " d-none close-chat" : ' open-chat'} updateRender={handleUpdate}/>
+                :
+                <ChatRoom user={user}/>
+                }
             </aside>
-            <ChatIcon />
+            <ChatIcon openChat={openChat}/>
         </Fragment>
     )
 }

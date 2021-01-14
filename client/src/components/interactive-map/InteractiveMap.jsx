@@ -93,7 +93,6 @@ export default function InteractiveMap() {
     axios
       .get(`${FETCH}/buyerscity`)
       .then((res) => {
-        console.log(res.data);
         setBuyercity(res.data);
         setLoadingBuyercity(true);
       })
@@ -102,7 +101,6 @@ export default function InteractiveMap() {
       });
   }, []);
 
-  console.log(buyercity);
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -146,8 +144,8 @@ export default function InteractiveMap() {
       </Marker>
 
       {isLoadingFarmerCity
-        ? farmercity.slice(0, 1000).map((res) => (
-            <Marker position={[res.lat, res.long]} icon={tractorIcon}>
+        ? farmercity.slice(0, 1000).map((res, index) => (
+            <Marker position={[res.lat, res.long]} key={index} icon={tractorIcon}>
               <Popup className="popup">
                 <p className="popup-locaux">Locaux de ComparateurAgricole</p>
               </Popup>
@@ -156,8 +154,8 @@ export default function InteractiveMap() {
         : null}
 
       {isLoadingBuyercity
-        ? buyercity.slice(0, 8).map((res) => (
-            <Marker position={[res.lat, res.long]} icon={buyerIcon}>
+        ? buyercity.slice(0, 8).map((res, index) => (
+            <Marker position={[res.lat, res.long]} key={index} icon={buyerIcon}>
               <Popup className="popup">
                 <p className="popup-locaux">Locaux de ComparateurAgricole</p>
               </Popup>

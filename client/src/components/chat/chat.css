@@ -3,16 +3,67 @@
     height:100vh;
     background: var(--light-grey);
     z-index:1000;
-    width:85%;
     border-left: var(--primary) 15px solid;
 }
 
+.chat-container .logo-svg{
+    width:100%;
+    position: unset;
+}
+.open-chat{
+    width:85%;
+    transition: .3s ease-in-out;
+    opacity:1;
+}
+
+.close-chat{
+    width: 0;
+    padding: 0 !important;
+    transition: .3s ease-in-out;
+    opacity:0;
+}
 .chat-icon{
     top:0;
     right:0;
     z-index:1000;
+    cursor:pointer;
 }
 
 .chat-icon svg path{
     color: var(--primary);
+}
+
+.join-chat-card{
+    background:none;
+}
+.join-chat-card .card-body{
+    background: var(--medium-grey);
+}
+.join-chat-card h2{
+    font-family: var(--header-font);
+    font-weight: var(--bold);
+    color:var(--dark-grey);
+    font-size:1.5em;
+}
+.join-chat-card label{
+    font-family: var(--default-font);
+    font-weight: var(--semi-bold);
+    color:var(--dark-grey);
+    font-size:1em;
+}
+.join-chat-card .btn{
+    background: var(--primary);
+    color: var(--light-grey);
+    font-family: var(--default-font);
+    font-weight: var(--regular);
+}
+.join-chat-card .btn:hover{
+    background: none;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+@media screen and (min-width: 576px){
+    .open-chat{
+        width:40vw;
+    }
 }
