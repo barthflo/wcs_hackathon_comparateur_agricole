@@ -1,35 +1,46 @@
-.icons-farmer-pop-up{
-    width: 20px;
-    height: 20px;
-}
-
-.container-li{
-    font-size: 15px;
-    font-family:var(--default-font);
-    font-weight: var(--semi-bold);
-    color:var(--dark-grey)
-}
-
-.flex-responsive{
-    display:flex;
+.pop-up-container {
+    display: flex;
     flex-direction: column;
-    
+    align-items: center;
+    justify-content: space-around;
 }
 
-.pop-up h3{
-    color:var(--primary);
+.pop-up-city {
     font-family: var(--header-font);
+    font-size: 20px;
+    font-weight: var(--semi-bold);
+    color: var(--primary);
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 16px;
 }
 
+.pop-up-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-@media screen and (min-width:768px){
-    .flex-responsive{
-        flex-direction: row;
-    }
+.pop-up-info-surface, .pop-up-products p {
+    text-align: center;
+    text-transform: capitalize;
+    font-family: var(--default-font);
+    font-size: 14px;
+    color: var(--black);
+}
 
-    .container-global-li{
-        display:flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+.pop-up-info-surface {
+    text-transform: none;
+}
+
+.pop-up-products p {
+    margin: 6px;
+}
+
+span.important {
+    color: var(--primary);
+    font-weight: var(--semi-bold);
 }
