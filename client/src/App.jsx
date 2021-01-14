@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <a href="https://comparateuragricole.com/" target="blank"><LogoSVG /></a>
-      <ChatContainer />
+      <ChatContainer className={"border-green"}/>
       <InteractiveMap />
     </div>
   );

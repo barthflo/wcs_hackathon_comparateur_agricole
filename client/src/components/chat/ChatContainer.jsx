@@ -4,7 +4,7 @@ import './chat.css'
 import JoinChat from './JoinChat';
 import ChatRoom from './ChatRoom';
 
-const ChatContainer = () => {
+const ChatContainer = ({className}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState('');
@@ -23,10 +23,10 @@ const ChatContainer = () => {
     const openChat = () => {
         setIsOpen(!isOpen);
     }
-    
+
     return (
         <Fragment>
-            <aside className = {"chat-container position-absolute d-flex flex-column justify-content-center align-item-center p-2" + (isOpen ? " open-chat" : " close-chat")}>
+            <aside className = {"chat-container position-absolute d-flex flex-column justify-content-center align-item-center p-2" + (isOpen ? " open-chat" : " close-chat") + ` ${className}`}>
                 {!user || user.length === 0 ?
                 <JoinChat className={(!isOpen) ? " d-none close-chat" : ' open-chat'} updateRender={handleUpdate}/>
                 :
