@@ -20,21 +20,21 @@ import buyer from "../../assets/buyer_icon-min.png";
 
 export const qgIcon = new L.Icon({
   iconUrl: QGIcon,
-  iconAnchor: [27, 55],
+  iconAnchor: [16, 55],
   popupAnchor: [10, -44],
   iconSize: [50, 50],
 });
 
 export const tractorIcon = new L.Icon({
   iconUrl: tractor,
-  iconAnchor: [27, 55],
+  iconAnchor: [5, 42],
   popupAnchor: [10, -44],
   iconSize: [28, 28],
 });
 
 export const buyerIcon = new L.Icon({
   iconUrl: buyer,
-  iconAnchor: [27, 55],
+  iconAnchor: [5, 42],
   popupAnchor: [10, -44],
   iconSize: [28, 28],
 });

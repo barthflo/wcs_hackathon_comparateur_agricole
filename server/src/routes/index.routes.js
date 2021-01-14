@@ -7,6 +7,7 @@ const productRouter = require('./product.routes.js')
 const transactionRouter = require('./transaction.routes.js')
 const farmerCityRouter =require ('./farmercity.routes')
 const buyerscityRouter =require ('./buyerscity.routes')
+const dataRouter = require('./data.routes')
 
 router.use('/farmers', farmerRouter);
 router.use('/buyers', buyerRouter);
@@ -15,7 +16,6 @@ router.use('/products', productRouter);
 router.use('/transactions', transactionRouter);
 router.use('/farmercity', farmerCityRouter);
 router.use('/buyerscity', buyerscityRouter);
-
-
+router.use('/data', dataRouter);
 
 module.exports = router;
