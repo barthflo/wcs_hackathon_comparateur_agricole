@@ -30,7 +30,6 @@ function Accordion_info_price() {
     axios
       .get(`${FETCH}/moy`)
       .then((res) => {
-        console.log(res.data);
         setmoyprice(res.data);
         setLoadingmoyprice(true);
       })
@@ -40,7 +39,6 @@ function Accordion_info_price() {
   }, []);
 
   return (
-    <div>
       <div className={classes.root}>
         <Accordion>
           <AccordionSummary
@@ -59,10 +57,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "avoine")
                     .map((res) => (
                       <div
-                        key="index"
+                        key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info text-capitalize">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -91,10 +89,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "ble")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info text-capitalize">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -113,7 +111,7 @@ function Accordion_info_price() {
             id="panel1a-header"
           >
             <Typography className={classes.heading}>
-              <h6 className="title-accordions">Colza</h6>
+              <h6 className="title-accordions text-capitalize">Colza</h6>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -123,10 +121,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "colza")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info text-capitalize">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -155,10 +153,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "feverol")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info text-capitalize">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -187,10 +185,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "mais")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info text-capitalize">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -219,10 +217,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "orge")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -251,10 +249,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "pois")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -283,10 +281,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "tournesol")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -315,10 +313,10 @@ function Accordion_info_price() {
                     .filter((res) => res.category === "triticale")
                     .map((res) => (
                       <div
-                        key="index"
+                      key={res.name}
                         className="d-flex flex-row justify-content-between text-info-accordions mb-1"
                       >
-                        <li classname="text-info">
+                        <li className="text-info">
                           {" "}
                           {res.name} : {res.AveragePrice}{" "}
                           <span className="color-ET">€/T</span>{" "}
@@ -329,12 +327,7 @@ function Accordion_info_price() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-
-      
       </div>
-
-      {/* : null} */}
-    </div>
   );
 }
 
