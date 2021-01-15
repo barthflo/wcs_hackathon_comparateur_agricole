@@ -50,6 +50,13 @@ export default function InteractiveMap() {
   const [buyercity, setBuyercity] = useState({});
   const [isLoadingBuyercity, setLoadingBuyercity] = useState(false);
 
+  const [product, setProduct] = useState("all");
+  const [farmSize, setFarmSize] = useState("all");
+  const [checkClient, setCheckClient] = useState(true);
+  const [checkBuyer, setCheckBuyer] = useState(false);
+
+  const [openFilter, setOpenFilter] = useState(false);
+
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -63,15 +70,15 @@ export default function InteractiveMap() {
 
   useEffect(() => {
     axios
-      .get(`${FETCH}/data?size=`)
+      .get(`${FETCH}/data?size=${farmSize}`)
       .then((res) => {
-        setDatas(res.data);
+        setDatas(product !== "all" ? res.data.filter(item => item.category === product) : res.data);
         setIsLoadingData(true);
       })
       .catch(function (erreur) {
         console.log(erreur);
       });
-  }, []);
+  }, [farmSize, product]);
 
   useEffect(() => {
     axios
@@ -89,27 +96,38 @@ export default function InteractiveMap() {
   const localisationCircle = { color: "#5a9449" };
 
 
-  const [product, setProduct] = useState("");
-  const [farmSize, setFarmSize] = useState([]);
-  const [type, setType] = useState([]);
-  const [checkClient, setCheckClient] = useState(false);
-  const [checkBuyer, setCheckBuyer] = useState(false);
+  const handleChangeSize = (e) => {
+    e.preventDefault();
+    setFarmSize(e.target.value)
+  }
 
-  const [openFilter, setOpenFilter]= useState(false);
+  const handleChangeClient=(e)=>{
+    e.preventDefault();
+    setCheckClient(!checkClient)
+  }
 
-  
-  
-  
+  const handleChangeBuyer=(e)=>{
+    e.preventDefault();
+    setCheckBuyer(!checkBuyer)
+  }
 
+  const handleChangeProduct=(e)=>{
+    e.preventDefault();
+    setProduct(e.target.value)
+  }
 
-
-
-
+  const resetSearch=(e)=>{
+    e.preventDefault();
+    setProduct("all") ;
+    setFarmSize("all");
+    setCheckClient(true);
+    setCheckBuyer(false);
+  }
 
   return lat && long ? (
     <div>
-      <div className={openFilter ? "openFilterDiv" : "filterDiv"} onClick={() => setOpenFilter(!openFilter)}>
-        <div className="burgerFilter">
+      <div className={openFilter ? "openFilterDiv" : "filterDiv"} >
+        <div className="burgerFilter" onClick={() => setOpenFilter(!openFilter)}>
           <div className="lineBurger"></div>
           <div className="lineBurger"></div>
           <div className="lineBurger"></div>
@@ -117,10 +135,17 @@ export default function InteractiveMap() {
         <form className={openFilter ? "formFilter" : "closeFormFilter"}>
           <h2>Filtres</h2>
 
-          <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckClient(!checkClient)}>Agriculteur Client<input type="checkbox" value="client"></input></label>
-          <label className="checkFilter" value={type} onChange={e => setType(e.target.value)} onClick={() => setCheckBuyer(!checkBuyer)}>Acheteur<input type="checkbox" value="buyers"></input></label>
+          <label className="checkFilter">
+            Agriculteur Client
+            <input type="checkbox" defaultChecked={checkClient} value="client" onChange={handleChangeClient}></input>
+          </label>
+          <label className="checkFilter">
+            Acheteur
+            <input type="checkbox" defaultChecked={checkBuyer} value="buyers" onChange={handleChangeBuyer}></input>
+          </label>
           <label>Type de produit:
-                <select value={product} onChange={e => setProduct(e.target.value)}>
+            <select value={product} onChange={handleChangeProduct}>
+              <option value="all" selected> Tous les produits </option>
               <option value="ble">Blé</option>
               <option value="avoine">Avoine</option>
               <option value="triticale">Triticale</option>
@@ -132,13 +157,15 @@ export default function InteractiveMap() {
               <option value="feverol">Feverol</option>
             </select>
           </label>
-          <label>Surface d'exploitation (hectares):
-                <select value={farmSize} onChange={e => setFarmSize(e.target.value)}>
-              <option value="little"> - 100 </option>
-              <option value="medium"> 100 - 200 </option>
-              <option value="big"> 200 + </option>
+          <label>Surface d'exploitation:
+                <select value={farmSize} onChange={handleChangeSize}>
+              <option selected value="all"> Toutes tailles </option>
+              <option value="little"> Moins de 100 ha</option>
+              <option value="medium"> Entre 100 ha et 200 ha</option>
+              <option value="big"> Plus de 200 ha </option>
             </select>
           </label>
+          <button onClick={resetSearch}> Réinitialiser </button>
         </form>
       </div>
       <MapContainer
@@ -152,32 +179,32 @@ export default function InteractiveMap() {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      <LayerGroup>
-        <Circle
-          center={[lat, long]}
-          pathOptions={localisationCircle}
-          radius={800}
-          className="circle-localisation"
-        />
-      </LayerGroup>
-      <Marker position={positionQG} icon={qgIcon}>
-        <Popup className="popup">
-          <h3 className="popup-locaux">Locaux de ComparateurAgricole</h3>
-        </Popup>
-      </Marker>
+        <LayerGroup>
+          <Circle
+            center={[lat, long]}
+            pathOptions={localisationCircle}
+            radius={800}
+            className="circle-localisation"
+          />
+        </LayerGroup>
+        <Marker position={positionQG} icon={qgIcon}>
+          <Popup className="popup">
+            <h3 className="popup-locaux">Locaux de ComparateurAgricole</h3>
+          </Popup>
+        </Marker>
 
-      {isLoadingData ? 
-        datas.slice(0, 1000).map((data, index) => (
+        {isLoadingData && checkClient ?
+          datas.slice(0, 1000).map((data, index) => (
             <Marker position={[data.lat, data.long]} icon={tractorIcon}>
               <Popup className="popup-farmer">
-                    <Popup_component infos={data} />
+                <Popup_component infos={data} />
               </Popup>
             </Marker>
-        ))
-        : null
-      }
+          ))
+          : null
+        }
 
-        {isLoadingBuyercity
+        {isLoadingBuyercity && checkBuyer
           ? buyercity.slice(0, 8).map((res) => (
             <Marker position={[res.lat, res.long]} icon={buyerIcon}>
               <Popup className="popup-buyer">
