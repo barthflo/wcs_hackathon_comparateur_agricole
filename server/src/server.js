@@ -13,7 +13,7 @@ const io = require('socket.io')(server, {
 const { addUser, RemoveUser, getUser, getUsersInRoom, removeUser } = require('./users.js');
 
 // *** Uncomment to load csv files ***
-importCsv();
+// importCsv();
 // ***
 
 io.on("connection", (socket) => {
