@@ -1,5 +1,5 @@
 .text-info-accordions li {
-  color: var(--black);
+  color: var(--black) !important;
   font-family: var(--default-font);
   font-weight: var(--semi-bold);
   list-style: none;
