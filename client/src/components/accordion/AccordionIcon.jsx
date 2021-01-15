@@ -1,10 +1,11 @@
 import React from 'react'
-import {BsFillChatQuoteFill} from 'react-icons/bs'
+import {GiWheat} from 'react-icons/gi'
+import './accordion.css'
 
 const AccordionIcon = ({openChat}) => {
     return (
         <div onClick={(e => openChat())} className="accordion-icon position-fixed p-4">
-            <BsFillChatQuoteFill size = {"2em"}/>
+            <GiWheat size = {"2em"}/>
         </div>
     )
 }
