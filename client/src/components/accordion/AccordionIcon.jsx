@@ -1,6 +1,6 @@
 import React from 'react'
 import {GiWheat} from 'react-icons/gi'
-import './accordion.css'
+import './accordions.css'
 
 const AccordionIcon = ({openChat}) => {
     return (
