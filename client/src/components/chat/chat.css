@@ -64,6 +64,10 @@
     background: var(--dark-grey);
 }
 
+.chat-room .info-bar .status-icon{
+    cursor:pointer;
+}
+
 .chat-room .info-bar h2{
     font-family: var(--header-font);
     font-weight : var(--semi-bold);
