@@ -17,6 +17,7 @@ importCsv();
 // ***
 
 io.on("connection", (socket) => {
+  console.log("user entered")
   socket.on('join', ({name, room}, callback) => {
     const {error, user} = addUser({id: socket.id, name: name, room: room});
     if(error){
@@ -36,6 +37,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on('unconnect', () => {
+    console.log("user has left")
       removeUser(socket.id);
   })
 })

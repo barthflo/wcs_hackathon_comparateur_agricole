@@ -1,4 +1,5 @@
 SET sql_mode = '';
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 SET GLOBAL time_zone = '+1:00';
 SET FOREIGN_KEY_CHECKS = 0;
 SET GROUP_CONCAT_MAX_LEN=32768;
@@ -57,14 +58,4 @@ CREATE TABLE `transactions` (
   `quantity` INT NOT NULL
 );
 
-
--- ALTER TABLE `buyers` ADD FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
--- ​
--- ALTER TABLE `farmers` ADD FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
--- ​
--- ALTER TABLE `transactions` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
--- ​
--- ALTER TABLE `transactions` ADD FOREIGN KEY (`farmer_id`) REFERENCES `farmers` (`id`);
--- ​
--- ALTER TABLE `transactions` ADD FOREIGN KEY (`buyer_id`) REFERENCES `buyers` (`id`);
 
