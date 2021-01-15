@@ -74,49 +74,40 @@
     right: 0;
 }
 
-.openFilterDiv h2{
-    margin: 16px;
+.formFilter h2{
+    font-family: var(--header-font);
+    font-weight: var(--semi-bold);
+    font-size: 1.8em;
+    color:var(--dark-grey);
+    width: 75%;
+    position: fixed;
+    top: 0;
 }
 
-.openFilterDiv label{
+.formFilter label{
+    font-family: var(--default-font);
     display: flex;
     flex-direction: column;
     margin: 8px;
 }
 
-.openFilterDiv select, .filterDiv input{
+.formFilter select, .formFilter input{
     margin: 8px;
     height: 50px;
 }
 
-.openFilterDiv .checkFilter{
+.formFilter .checkFilter{
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.openFilterDiv .checkFilter input{
-    height: 24px;
-    margin: 24px;
-}
-
 .burgerFilter{
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: space-around;
-    flex-flow: column nowrap;
-    z-index: 1;
-    position: relative;
-}
-    
-.burgerFilter .lineBurger{
-    width: 30px;
-    height: 3px;
-    border-radius: 10px;
-    transform-origin: 1px;
-    transition: all 0.3s linear;
-    background-color: #2a2a2a;
+    z-index: 998;
+    position: fixed;
+    top: 125px;
+    right: 0;
+    cursor: pointer;
 }
 
 .openFilterDiv{
@@ -125,25 +116,7 @@
     z-index: 1;
     top: 0;
     right: 0;
-}
-
-.openFilterDiv div:nth-of-type(1){
-    transform: rotate(45deg);
-}
-
-.openFilterDiv div:nth-of-type(2){
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-.openFilterDiv div:nth-of-type(3){
-    transform: rotate(-45deg);
-}
-
-.closeFormFilter{
-    display: none;
-    transform: translateX(100%);
-    transition: transform 1s ease-in;
+    z-index: 998;
 }
 
 .formFilter{
@@ -151,16 +124,15 @@
     flex-flow: row nowrap;
     justify-content: center;
     flex-flow: column nowrap;
-    background-color: #d6d6d6;
+    background-color: var(--light-grey);
     position: fixed;
     top: 0;
     right: 0;
     padding: 24px;
     transform: translateX(0);
-    transition: tranform 1s ease-in;
     height: 100vh; 
-    width: 25%;
-    border-left: 15px solid green; 
+    width: 350px;
+    border-left: 15px solid var(--info); 
 }
 
 .formFilter input[type=checkbox]{
@@ -171,16 +143,17 @@
     user-select:none;
 }
 
-@media screen and (max-width: 1100px){
-    .formFilter{
-        width: 70%;
-    }
+.formFilter button{
+    margin: 32px auto;
+    width: 200px;
 }
 
 @media screen and (max-width: 767px) {
     .wait-localisation, .no-localisation {
         font-size: 16px;
     }
-
+    .formFilter{
+        width: 85%;
+    }
     
 }

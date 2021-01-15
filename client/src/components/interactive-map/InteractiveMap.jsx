@@ -17,6 +17,7 @@ import tractor from "../../assets/tractor_icon-min.png";
 import QGIcon from "../../assets/home_icon-min.png";
 import buyer from "../../assets/buyer_icon-min.png";
 import Popup_component from './pop_up_component/popup-component';
+import { FcSearch } from 'react-icons/fc';
 
 export const qgIcon = new L.Icon({
   iconUrl: QGIcon,
@@ -101,24 +102,24 @@ export default function InteractiveMap() {
     setFarmSize(e.target.value)
   }
 
-  const handleChangeClient=(e)=>{
+  const handleChangeClient = (e) => {
     e.preventDefault();
     setCheckClient(!checkClient)
   }
 
-  const handleChangeBuyer=(e)=>{
+  const handleChangeBuyer = (e) => {
     e.preventDefault();
     setCheckBuyer(!checkBuyer)
   }
 
-  const handleChangeProduct=(e)=>{
+  const handleChangeProduct = (e) => {
     e.preventDefault();
     setProduct(e.target.value)
   }
 
-  const resetSearch=(e)=>{
+  const resetSearch = (e) => {
     e.preventDefault();
-    setProduct("all") ;
+    setProduct("all");
     setFarmSize("all");
     setCheckClient(true);
     setCheckBuyer(false);
@@ -126,46 +127,46 @@ export default function InteractiveMap() {
 
   return lat && long ? (
     <div>
-      <div className={openFilter ? "openFilterDiv" : "filterDiv"} >
-        <div className="burgerFilter" onClick={() => setOpenFilter(!openFilter)}>
-          <div className="lineBurger"></div>
-          <div className="lineBurger"></div>
-          <div className="lineBurger"></div>
+      <div className="openFilterDiv">
+        <div className="burgerFilter pr-4" onClick={() => setOpenFilter(!openFilter)}>
+          <FcSearch size={"2em"} />
         </div>
-        <form className={openFilter ? "formFilter" : "closeFormFilter"}>
-          <h2>Filtres</h2>
+        <form className={openFilter ? "open-chat" : "close-chat"}>
+          <div className="formFilter">
+            <h2 className="mt-5">Recherche avancée</h2>
 
-          <label className="checkFilter">
-            Agriculteur Client
-            <input type="checkbox" defaultChecked={checkClient} value="client" onChange={handleChangeClient}></input>
-          </label>
-          <label className="checkFilter">
-            Acheteur
-            <input type="checkbox" defaultChecked={checkBuyer} value="buyers" onChange={handleChangeBuyer}></input>
-          </label>
-          <label>Type de produit:
+            <label className="checkFilter mt-5 mb-3">
+              Agriculteur Client
+            <input type="checkbox" className="ml-3" defaultChecked={checkClient} value="client" onChange={handleChangeClient}></input>
+            </label>
+            <label className="checkFilter mb-5">
+              Acheteur
+            <input type="checkbox" className="ml-3" defaultChecked={checkBuyer} value="buyers" onChange={handleChangeBuyer}></input>
+            </label>
+            <label>Type de produit:
             <select value={product} onChange={handleChangeProduct}>
-              <option value="all" selected> Tous les produits </option>
-              <option value="ble">Blé</option>
-              <option value="avoine">Avoine</option>
-              <option value="triticale">Triticale</option>
-              <option value="orge">Orge</option>
-              <option value="mais">Maïs</option>
-              <option value="pois">Pois</option>
-              <option value="colza">Colza</option>
-              <option value="tournesol">Tournesol</option>
-              <option value="feverol">Feverol</option>
-            </select>
-          </label>
-          <label>Surface d'exploitation:
+                <option value="all" selected> Tous les produits </option>
+                <option value="ble">Blé</option>
+                <option value="avoine">Avoine</option>
+                <option value="triticale">Triticale</option>
+                <option value="orge">Orge</option>
+                <option value="mais">Maïs</option>
+                <option value="pois">Pois</option>
+                <option value="colza">Colza</option>
+                <option value="tournesol">Tournesol</option>
+                <option value="feverol">Feverol</option>
+              </select>
+            </label>
+            <label>Surface d'exploitation:
                 <select value={farmSize} onChange={handleChangeSize}>
-              <option selected value="all"> Toutes tailles </option>
-              <option value="little"> Moins de 100 ha</option>
-              <option value="medium"> Entre 100 ha et 200 ha</option>
-              <option value="big"> Plus de 200 ha </option>
-            </select>
-          </label>
-          <button onClick={resetSearch}> Réinitialiser </button>
+                <option selected value="all"> Toutes tailles </option>
+                <option value="little"> Moins de 100 ha</option>
+                <option value="medium"> Entre 100 ha et 200 ha</option>
+                <option value="big"> Plus de 200 ha </option>
+              </select>
+            </label>
+            <button onClick={resetSearch} className="btn btn-outline-primary"> Réinitialiser </button>
+          </div>
         </form>
       </div>
       <MapContainer
