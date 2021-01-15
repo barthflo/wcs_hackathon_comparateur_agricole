@@ -1,4 +1,5 @@
 SET sql_mode = '';
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 SET GLOBAL time_zone = '+1:00';
 SET FOREIGN_KEY_CHECKS = 0;
 SET GROUP_CONCAT_MAX_LEN=32768;
@@ -56,6 +57,5 @@ CREATE TABLE `transactions` (
   `price` INT NOT NULL,
   `quantity` INT NOT NULL
 );
-
 
 
