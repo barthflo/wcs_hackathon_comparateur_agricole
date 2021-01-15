@@ -1,0 +1,33 @@
+.filterBar{
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    margin: 32px;
+}
+
+.filterBar h2{
+    margin: 16px;
+}
+
+.filterBar label{
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.filterBar select, .filterBar input{
+    margin: 8px;
+    height: 50px;
+}
+
+.filterBar .checkFilter{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterBar .checkFilter input{
+    height: 24px;
+}

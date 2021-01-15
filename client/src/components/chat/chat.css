@@ -1,0 +1,153 @@
+.z-index-max{
+    z-index:2000;
+}
+
+.chat-container{
+    right:0;
+    height:100vh;
+    background: var(--light-grey);
+    z-index:1000;
+}
+
+.chat-container .logo-svg{
+    width:100%;
+    position: unset;
+}
+.border-warning{
+    border-left: var(--premium) 15px solid;
+}
+
+.border-green{
+    border-left: var(--primary) 15px solid;
+}
+.chat-room{
+    background:var(--medium-grey);
+}
+
+.chat-room input:focus{
+    border-color:var(--primary);
+    box-shadow : 0 0 0 0.2rem var(--primary);
+}
+
+.chat-room .display-zone {
+    background: var(--light-grey);
+    height: calc(100% - 40px);
+    width: calc(100% - 20px);
+}
+.chat-room .message {
+    opacity: .9;
+}
+.chat-room .message p {
+    font-size: .9em;
+    font-family: var(--default-font);
+    font-weight:var(--semi-bold);
+    margin-bottom: 6px;
+}
+.chat-room .message small {
+    font-size: .7em;
+    font-family: var(--default-font);
+    font-weight:var(--regular);
+}
+.chat-room .message-self {
+    background: var(--primary);
+    color:var(--light);
+}
+
+.chat-room .message-other {
+    background: var(--premium);
+    color:var(--light);
+}
+
+.chat-room .info-bar{
+    height:70px;
+    width: 100%;
+    background: var(--dark-grey);
+}
+
+.chat-room .info-bar .status-icon{
+    cursor:pointer;
+}
+
+.chat-room .info-bar h2{
+    font-family: var(--header-font);
+    font-weight : var(--semi-bold);
+    font-size:1.2em;
+}
+
+.open-chat{
+    width:85%;
+    transition: .3s ease-in-out;
+    opacity:1;
+}
+
+.close-chat{
+    width: 0;
+    padding: 0 !important;
+    transition: .3s ease-in-out;
+    opacity:0;
+}
+.chat-icon{
+    top:0;
+    right:0;
+    z-index:1000;
+    cursor:pointer;
+}
+
+.chat-icon svg path, .send-icon-container svg path{
+    color: var(--primary);
+    transition: .2s ease-in-out;
+}
+
+.send-icon-container {
+    height:38px;
+    width:38px;
+}
+
+.send-icon-container:focus{
+    outline: none;
+}
+
+.send-icon-container svg{
+    position:absolute;
+    left:0;
+}
+
+.send-icon-container:hover svg path{
+    color:var(--light-grey);
+    transition: .2s ease-in-out;
+}
+
+.join-chat-card{
+    background:none;
+}
+.join-chat-card .card-body{
+    background: var(--medium-grey);
+}
+.join-chat-card h2{
+    font-family: var(--header-font);
+    font-weight: var(--bold);
+    color:var(--dark-grey);
+    font-size:1.5em;
+}
+.join-chat-card label{
+    font-family: var(--default-font);
+    font-weight: var(--semi-bold);
+    color:var(--dark-grey);
+    font-size:1em;
+}
+.join-chat-card .btn{
+    background: var(--primary);
+    color: var(--light-grey);
+    font-family: var(--default-font);
+    font-weight: var(--regular);
+}
+.join-chat-card .btn:hover{
+    background: none;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+@media screen and (min-width: 576px){
+    .open-chat{
+        width:350px;
+    }
+}

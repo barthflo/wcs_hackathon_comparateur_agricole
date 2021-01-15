@@ -1,7 +1,13 @@
+.hellotest{
+    position: relative;
+    z-index: 1;
+}
+
 .map {
     height: 100vh;
     width: 100vw;
     position: relative;
+    z-index: 0;
 }
 
 .popup-locaux {
@@ -60,8 +66,94 @@
     cursor: grab;
 }
 
+.filterDiv{
+    margin: 16px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}
+
+.formFilter h2{
+    font-family: var(--header-font);
+    font-weight: var(--semi-bold);
+    font-size: 1.8em;
+    color:var(--dark-grey);
+    width: 75%;
+    position: fixed;
+    top: 0;
+}
+
+.formFilter label{
+    font-family: var(--default-font);
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.formFilter select, .formFilter input{
+    margin: 8px;
+    height: 50px;
+}
+
+.formFilter .checkFilter{
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.burgerFilter{
+    z-index: 998;
+    position: fixed;
+    top: 125px;
+    right: 0;
+    cursor: pointer;
+}
+
+.openFilterDiv{
+    margin: 16px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    z-index: 998;
+}
+
+.formFilter{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background-color: var(--light-grey);
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 24px;
+    transform: translateX(0);
+    height: 100vh; 
+    width: 350px;
+    border-left: 15px solid var(--info); 
+}
+
+.formFilter input[type=checkbox]{
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+
+.formFilter button{
+    margin: 32px auto;
+    width: 200px;
+}
+
 @media screen and (max-width: 767px) {
     .wait-localisation, .no-localisation {
         font-size: 16px;
     }
+    .formFilter{
+        width: 85%;
+    }
+    
 }

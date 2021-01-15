@@ -2,8 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const db = require('./db_connection')
 const fastCsv = require('fast-csv')
-const express = require('express');
-const app = express()
 
 const csvFiles = [
     {
