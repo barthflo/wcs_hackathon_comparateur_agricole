@@ -131,8 +131,8 @@ export default function InteractiveMap() {
         <div className="burgerFilter pr-4" onClick={() => setOpenFilter(!openFilter)}>
           <FcSearch size={"2em"} />
         </div>
-        <form className={openFilter ? "open-chat" : "close-chat"}>
-          <div className="formFilter">
+        <form >
+          <div className={"formFilter" + (openFilter ? " open-chat" : " close-chat")}>
             <h2 className="mt-5">Recherche avancée</h2>
 
             <label className="checkFilter mt-5 mb-3">
