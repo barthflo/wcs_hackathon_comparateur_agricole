@@ -11,7 +11,7 @@ const ChatContainer = ({className}) => {
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('username')));
-    }, [user])
+    }, [])
 
     const handleUpdate = () => {
         if(localStorage.getItem('username') === null){
@@ -30,7 +30,7 @@ const ChatContainer = ({className}) => {
                 {!user || user.length === 0 ?
                 <JoinChat className={(!isOpen) ? " d-none close-chat" : ' open-chat'} updateRender={handleUpdate}/>
                 :
-                <ChatRoom user={user}/>
+                <ChatRoom user={user} updateRender = {handleUpdate}/>
                 }
             </aside>
             <ChatIcon openChat={openChat}/>

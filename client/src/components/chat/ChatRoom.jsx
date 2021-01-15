@@ -7,7 +7,7 @@ import Message from './Message'
 
 let socket;
 
-const ChatRoom = ({user}) => {
+const ChatRoom = ({user, updateRender}) => {
 
     const room = "Salon Général";
     const [message, setMessage] = useState('');
@@ -20,11 +20,6 @@ const ChatRoom = ({user}) => {
         socket.emit('join', {name: user, room:room}, () => {
 
         });
-        return () => {
-            localStorage.removeItem('username')
-            socket.emit('unconnect');
-            socket.off();
-        }
     }, [ENDPOINT]);
 
     useEffect (() => {
@@ -32,6 +27,13 @@ const ChatRoom = ({user}) => {
             setMessages([...messages, message]);
         })
     }, [messages]);
+
+    const disconnect = (e) => {
+        localStorage.removeItem('username');
+        socket.emit('unconnect');
+        socket.off();
+        updateRender();
+    }
 
     const sendMessage = (e) => {
         e.preventDefault()
@@ -45,7 +47,11 @@ const ChatRoom = ({user}) => {
             <div className="row info-bar flex-column flex-nowrap justify-content-center px-2">
                 <h2 className = 'text-light text-uppercase mb-0 w-100'>{room}</h2>
                 <div className="name d-flex align-items-center">
-                    <RiRadioButtonLine className="mr-1 status-icon" size={"1.2em"} color={"#5a9449"} />
+                    <RiRadioButtonLine 
+                        className="mr-1 status-icon" 
+                        size={"1.2em"} 
+                        color={"#5a9449"} 
+                        onClick={disconnect}/>
                     <p className="font-italic text-light text-capitalize w-100 mb-0">{user}</p>
                 </div>
             </div>
@@ -69,10 +75,7 @@ const ChatRoom = ({user}) => {
                 <button className="send-icon-container btn col-1 position-relative d-flex align-items-center" onClick = {e => sendMessage(e)}>
                     <AiOutlineSend  size={"1.6em"}/>
                 </button>
-            </div>
-            
-            {/* <button onClick ={e => {localStorage.removeItem('username'); socket.emit("unconnect"); socket.off()}}>Déconnexion</button> */}
-            
+            </div>            
         </div>
     )
 }

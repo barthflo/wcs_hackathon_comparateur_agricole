@@ -1,3 +1,7 @@
+.z-index-max{
+    z-index:2000;
+}
+
 .chat-container{
     right:0;
     height:100vh;
@@ -8,6 +12,9 @@
 .chat-container .logo-svg{
     width:100%;
     position: unset;
+}
+.border-warning{
+    border-left: var(--premium) 15px solid;
 }
 
 .border-green{
@@ -55,6 +62,10 @@
     height:70px;
     width: 100%;
     background: var(--dark-grey);
+}
+
+.chat-room .info-bar .status-icon{
+    cursor:pointer;
 }
 
 .chat-room .info-bar h2{
